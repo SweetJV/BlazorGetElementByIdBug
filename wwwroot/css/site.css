@@ -1,0 +1,45 @@
+﻿*
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    min-height: 100vh;
+}
+
+.ColorSwatchBox
+{
+    background-color: #f00;
+    width: 32px;
+    height: 32px;
+}
+
+.PopUpColorPicker
+{
+    background-color: #ccc;
+    width: 200px;
+    height: 200px;
+    position: fixed;
+}
+
+#TestPage
+{
+    background-color: #222;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+#Toolbar
+{
+    background-color: #444;
+    color: #eee;
+    width: 100%;
+    height: 50px;
+    display: flex;
+}

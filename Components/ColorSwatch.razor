@@ -1,0 +1,28 @@
+﻿@inherits ColorSwatchBase
+
+<div id="@SwatchId" class="ColorSwatchBox" @onclick="OnSwatchClick"/>
+
+@if(ShowPicker)
+{
+    <div id="@PickerId" class="PopUpColorPicker" style=@PickerStyle>
+        <div id="@RedDivId">
+            <label id="@RedLabelId">Red: </label>
+            <input id="@RedId" type="number" value=255 min="0" max="255" @onchange="ColorPickerChange">
+        </div>
+
+        <div id="@GreenDivId">
+            <label id="@GreenLabelId">Green: </label>
+            <input id="@GreenId" type="number" value=255 min="0" max="255" @onchange="ColorPickerChange">
+        </div>
+
+        <div id="@BlueDivId">
+            <label id="@BlueLabelId">Blue: </label>
+            <input id="@BlueId" type="number" value=255 min="0" max="255" @onchange="ColorPickerChange">
+        </div>
+
+        <div id="@AlphaDivId">
+            <label id="@AlphaLabelId">Alpha: </label>
+            <input id="@AlphaId" type="number" value=255 min="0" max="255" @onchange="ColorPickerChange">
+        </div>
+    </div>
+}
