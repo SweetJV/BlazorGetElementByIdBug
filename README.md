@@ -11,7 +11,7 @@ This is simplified project that demonstrates a problem I ran into on a larger pr
 The workflow is as follows
 
 * The floating panel is hidden most of the time
-* If you click the color box the floating editing panel pops up below the boox
+* If you click the color box the floating editor panel pops up below the box
 * If you click on the panel, or any of the editing fields, the panel remains visible
 * If you click anywhere outside of the panel it becomes hidden
 
@@ -28,13 +28,13 @@ To achieve this behavior requires some javascript interop. Specifically:
 
 For some reason, getElementById returns null when passed the floating panel id. It works fine for all other elements, including child elements of the panel.
 
-Interestingly, if we querySelector instead and search by class, it does find the panel. And the element it returns has an id that matches the id we tried to use with getElementById.
+Interestingly, if we use querySelector instead and search by class, it does find the panel. And the element it returns has an id that matches the id we tried to use with getElementById.
 
 Unfortunately, searching by class isn't sufficient for real world use cases, since we may have multiple instances of this component on the same page. But for this demo project I'm using that method to demonstrate how it should work.
 
 You can find the relevant code in interop.js, in the OnBodyClick function. The key lines of code to inspect are
 
-...
+```javascript
 // This fails, even though an element with this id exists
 let el_this_id = document.getElementById(this.id);
 
@@ -44,7 +44,7 @@ let el_this_qu = document.querySelector(".PopUpColorPicker");
 
 // Target element works just fine
 let el_target  = document.getElementById(e.target.id);
-...
+```
 
 ## Notes
 
@@ -54,5 +54,5 @@ This bug is consistent across Chrome, Firefox, and Edge. This makes me suspect i
 
 ## Additional minor problem
 
-When you launch the project, it says "An unhandled error has occurred". It doesn't seem to affect anything, but I'm curioud what's causing that.
+When you launch the project, it says "An unhandled error has occurred". It doesn't seem to affect anything, but I'm curious what's causing that.
 
