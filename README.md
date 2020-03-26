@@ -52,6 +52,12 @@ Debug logging code has been added, so if you run the project and open up the deb
 
 This bug is consistent across Chrome, Firefox, and Edge. This makes me suspect it may be caused by something in the Blazor rendering process.
 
+## Technical Details
+
+* Visual Studio 16.5.1
+* Blazor WebAssembly
+* ASP.NET Core 3.1
+
 ## Additional minor problem
 
 When you launch the project, it says "An unhandled error has occurred". It doesn't seem to affect anything, but I'm curious what's causing that.
