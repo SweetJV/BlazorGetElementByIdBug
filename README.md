@@ -3,7 +3,7 @@
 
 ## Project Overview
 
-This is simplified project that demonstrates a problem I ran into on a larger project. I am trying to create a color picker component that contains two parts:
+This is a simplified project that demonstrates a problem I ran into on a larger project. I am trying to create a color picker component that contains two parts:
 
 * A colored box that displays the current color
 * A floating panel with controls to edit the color values
