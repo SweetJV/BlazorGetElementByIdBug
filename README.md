@@ -75,7 +75,4 @@ I've left the old method that uses element contains and you can easily toggle be
 * Blazor WebAssembly
 * ASP.NET Core 3.1
 
-## Additional minor problem
-
-When you launch the project, it says "An unhandled error has occurred". It doesn't seem to affect anything, but I'm curious what's causing that.
 
