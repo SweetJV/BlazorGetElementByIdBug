@@ -52,6 +52,23 @@ Debug logging code has been added, so if you run the project and open up the deb
 
 This bug is consistent across Chrome, Firefox, and Edge. This makes me suspect it may be caused by something in the Blazor rendering process.
 
+## Update
+
+I was able to come up with a workaround that I can live with, but I don't think it's ideal. Here's what I did:
+
+# ColorSwatchBase.razor.cs
+
+1. Moved the call to register the click event from TogglePickerVisibility to OnAfterRenderAsync, when the panel is first shown.
+
+# interop.js
+
+1. Record the ids of the popup, and all children, when the click event is registered
+NOTE: getElementById works fine here.
+
+2. Use those ids in OnBodyClick, instead of element contains.
+
+I've left the old method that uses element contains and you can easily toggle between these two methods by changing UseElementIds in OnBodyClick.
+
 ## Technical Details
 
 * Visual Studio 16.5.1
