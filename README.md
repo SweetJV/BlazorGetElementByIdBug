@@ -56,11 +56,11 @@ This bug is consistent across Chrome, Firefox, and Edge. This makes me suspect i
 
 I was able to come up with a workaround that I can live with, but I don't think it's ideal. Here's what I did:
 
-# ColorSwatchBase.razor.cs
+### ColorSwatchBase.razor.cs
 
 1. Moved the call to register the click event from TogglePickerVisibility to OnAfterRenderAsync, when the panel is first shown.
 
-# interop.js
+### interop.js
 
 1. Record the ids of the popup, and all children, when the click event is registered
 NOTE: getElementById works fine here.
