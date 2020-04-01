@@ -53,6 +53,8 @@ namespace BlazorGetElementByIdBug.Components
         protected bool ShowPicker;
         protected bool UpdatingPicker;
 
+        protected bool PickerShown;
+
         protected DotNetObjectReference<ColorSwatchBase> m_net_obj;
 
         protected override async Task OnAfterRenderAsync(bool first_render)
@@ -84,6 +86,19 @@ namespace BlazorGetElementByIdBug.Components
             else
             {
                 UpdatingPicker = false;
+
+                // Whend the picker is shown for the first time, we register our body click handler
+                if(PickerShown)
+                {
+                    PickerShown = false;
+
+                    if(m_net_obj == null)
+                    {
+                        m_net_obj = DotNetObjectReference.Create(this);
+                    }
+
+                    await JS.InvokeAsync<object>("RegisterOutsideClickDetector", PickerId, m_net_obj, "OnOutsideClick");
+                }
             }
         }
 
@@ -99,11 +114,7 @@ namespace BlazorGetElementByIdBug.Components
 
             if(ShowPicker)
             {
-                if(m_net_obj == null)
-                {
-                    m_net_obj = DotNetObjectReference.Create(this);
-                    await JS.InvokeAsync<object>("RegisterOutsideClickDetector", PickerId, m_net_obj, "OnOutsideClick");
-                }
+                PickerShown = true;
             }
             else
             {

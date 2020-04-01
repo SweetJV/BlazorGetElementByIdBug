@@ -2,14 +2,45 @@
 
 //-----------------------------------------------------------------------------
 
+function GetElementHierarchyIds(id, ids)
+{
+    let el = document.getElementById(id);
+
+    if(el)
+    {
+        ids.push(id);
+
+        let children     = el.childNodes;
+        let num_children = children.length;
+
+        for(let i = 0; i < num_children; ++i)
+        {
+            let child = children[i];
+
+            if(child)
+            {
+                GetElementHierarchyIds(child.id, ids);
+            }
+        }
+    }
+}
+
+//-----------------------------------------------------------------------------
+
 class OutsideClickDetector
 {
     constructor(id, obj, callback)
     {
-        this.Id        = id;
-        this.Obj       = obj;
-        this.Callback  = callback;
-        this.ClickFunc = null;
+        this.Id         = id;
+        this.Obj        = obj;
+        this.Callback   = callback;
+        this.ClickFunc  = null;
+        this.ElementIds = [];
+
+        GetElementHierarchyIds(id, this.ElementIds);
+
+        console.log("Element Hierarchy Ids");
+        console.log(this.ElementIds);
 
         this.RegisterListener();
     }
@@ -30,7 +61,28 @@ class OutsideClickDetector
 
     OnBodyClick(e)
     {
-        if(e.target.id != this.Id)
+        let UseElementIds = true;
+
+        if(UseElementIds)
+        {
+            let target_index = this.ElementIds.indexOf(e.target.id);
+
+            console.log("OnBodyClick");
+            console.log("Target Id");
+            console.log(e.target.id);
+            console.log("Target Index");
+            console.log(target_index);
+
+            if(e.target.id != this.Id)
+            {
+                if(target_index < 0)
+                {
+                    this.UnregisterListener();
+                    this.Obj.invokeMethodAsync(this.Callback);
+                }
+            }
+        }
+        else
         {
             console.log("OnBodyClick");
             console.log("ThisId: " + this.Id);
@@ -53,17 +105,20 @@ class OutsideClickDetector
             console.log("TargetElement");
             console.log(el_target);
 
-            // Fails, because el_this_id is null
-            //let contains = el_this_id.contains(el_target);
-
-            // This works for a demo, but won't work in the real world
-            // since we might have multiple instances of this component
-            let contains = el_this_qu.contains(el_target);
-
-            if(!contains)
+            if(e.target.id != this.Id)
             {
-                this.UnregisterListener();
-                this.Obj.invokeMethodAsync(this.Callback);
+                // Fails, because el_this_id is null
+                //let contains = el_this_id.contains(el_target);
+
+                // This works for a demo, but won't work in the real world
+                // since we might have multiple instances of this component
+                let contains = el_this_qu.contains(el_target);
+
+                if(!contains)
+                {
+                    this.UnregisterListener();
+                    this.Obj.invokeMethodAsync(this.Callback);
+                }
             }
         }
     }
