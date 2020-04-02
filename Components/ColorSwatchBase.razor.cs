@@ -108,6 +108,7 @@ namespace BlazorGetElementByIdBug.Components
         {
             string hex_color = ValueUtils.ColorToHexColor(Color);
             await DomUtils.SetCssStyleProperty(JS, SwatchId, "background-color", hex_color);
+            await Log("Swatch UpdateColorSwatch Finished");
         }
 
         protected async Task TogglePickerVisibility()
@@ -143,6 +144,8 @@ namespace BlazorGetElementByIdBug.Components
 
         protected async Task ColorPickerChange(ChangeEventArgs e)
         {
+            await Log("Swatch ColorPickerChange Started");
+
             string sr = await JS.InvokeAsync<string>("GetElementValue", RedId);
             string sg = await JS.InvokeAsync<string>("GetElementValue", GreenId);
             string sb = await JS.InvokeAsync<string>("GetElementValue", BlueId);
@@ -158,6 +161,7 @@ namespace BlazorGetElementByIdBug.Components
             this.Color = c;
 
             await UpdateColorSwatch();
+            await Log("Swatch ColorPickerChange Finished");
         }
 
         protected async Task Log(string message)
