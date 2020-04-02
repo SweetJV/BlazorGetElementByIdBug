@@ -59,7 +59,7 @@ namespace BlazorGetElementByIdBug.Components
 
         protected override bool ShouldRender()
         {
-            InvokeAsync(() => Log("Swatch ShouldRender Started"));
+            InvokeAsync(() => Log("Swatch ShouldRender"));
             return base.ShouldRender();
         }
 
@@ -148,7 +148,7 @@ namespace BlazorGetElementByIdBug.Components
         [JSInvokable]
         public async Task OnOutsideClick()
         {
-            await Log("Swatch ColorPickerChange Started");
+            await Log("Swatch OnOutsideClick");
             await TogglePickerVisibility();
         }
 
