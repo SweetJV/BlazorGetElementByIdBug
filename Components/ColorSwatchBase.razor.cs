@@ -100,6 +100,8 @@ namespace BlazorGetElementByIdBug.Components
                     await JS.InvokeAsync<object>("RegisterOutsideClickDetector", PickerId, m_net_obj, "OnOutsideClick");
                 }
             }
+
+            await Log("Swatch OnAfterRenderAsync Finished");
         }
 
         protected async Task UpdateColorSwatch()
