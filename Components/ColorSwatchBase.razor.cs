@@ -119,6 +119,8 @@ namespace BlazorGetElementByIdBug.Components
 
         protected async Task TogglePickerVisibility()
         {
+            await Log("Swatch TogglePickerVisibility Started");
+
             ShowPicker = !ShowPicker;
 
             if(ShowPicker)
@@ -135,6 +137,7 @@ namespace BlazorGetElementByIdBug.Components
             }
 
             StateHasChanged();
+            await Log("Swatch TogglePickerVisibility Finished");
         }
 
         protected async Task OnSwatchClick(MouseEventArgs e)
@@ -145,6 +148,7 @@ namespace BlazorGetElementByIdBug.Components
         [JSInvokable]
         public async Task OnOutsideClick()
         {
+            await Log("Swatch ColorPickerChange Started");
             await TogglePickerVisibility();
         }
 

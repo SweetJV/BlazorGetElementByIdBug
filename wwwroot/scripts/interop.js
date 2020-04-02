@@ -50,6 +50,7 @@ class OutsideClickDetector
         var instance = this;
         document.body.addEventListener("click", this.ClickFunc = function(e)
         {
+            console.log("document.body click event handler");
             instance.OnBodyClick(e);
         }, false);
     }
@@ -57,11 +58,12 @@ class OutsideClickDetector
     UnregisterListener()
     {
         document.body.removeEventListener('click', this.ClickFunc, false);
+        console.log("UnregisterListener");
     }
 
     OnBodyClick(e)
     {
-        let UseElementIds = true;
+        let UseElementIds = false;
 
         if(UseElementIds)
         {
