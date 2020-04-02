@@ -57,6 +57,12 @@ namespace BlazorGetElementByIdBug.Components
 
         protected DotNetObjectReference<ColorSwatchBase> m_net_obj;
 
+        protected override bool ShouldRender()
+        {
+            InvokeAsync(() => Log("Swatch ShouldRender Started"));
+            return base.ShouldRender();
+        }
+
         protected override async Task OnAfterRenderAsync(bool first_render)
         {
             if(first_render)
